@@ -12,6 +12,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          // backgroundColor: Colors.black12,
           centerTitle: true,
           title: const Text(title),
         ),
@@ -24,10 +25,14 @@ class HomeScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   var item = snapshot.data![index];
                   return ListTile(
-                    title: Text(item.category ?? ''),
-                    subtitle: Text(item.description ?? ''),
+                    title: Text(item.category ?? 'No category'),
+                    subtitle: Text(item.description ?? 'No description'),
                     onTap: () {
-                      Get.to(() => DetailsScreen(title: item.title!));
+                      Get.to(() => DetailsScreen(
+                            title: item.title!,
+                            description: item.description!,
+                            imageUrl: item.image!,
+                          ));
                     },
                   );
                 },
